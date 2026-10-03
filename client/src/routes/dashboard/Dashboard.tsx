@@ -1,3 +1,3 @@
-const Dashboard = () => <>Placeholder</>;
+const Dashboard = () => <>Dashboard Placeholder</>;
 
 export { Dashboard };
