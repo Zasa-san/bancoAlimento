@@ -21,4 +21,6 @@ if (!parsed.success) {
   process.exit(1);
 }
 
-export const envData = parsed.data;
+const envData = parsed.data;
+
+export { envData };

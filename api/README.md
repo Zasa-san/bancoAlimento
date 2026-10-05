@@ -50,6 +50,10 @@ yarn dev
 # GET http://localhost:4000/health → { "status": "ok" }
 ```
 
+### 4. Logs
+
+Los logs se guardan en `{apiFolder}/logs`. Los logs son rotativos de 14 días, o si superan los 20mb de tamaño.
+
 ## Scripts
 
 | Comando              | Qué hace                        |
