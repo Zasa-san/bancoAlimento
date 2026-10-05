@@ -1,6 +1,16 @@
 import { app } from "./app.js";
-import { env } from "./config/env.js";
+import { connectDB } from "./config/db.js";
+import { envData } from "./config/env.js";
+import { logger } from "./config/logger.js";
 
-app.listen(env.PORT, () => {
-  console.log(`API en http://localhost:${env.PORT}`);
+const start = async (): Promise<void> => {
+  await connectDB();
+  app.listen(envData.PORT, () => {
+    logger.info(`API started at http://localhost:${envData.PORT}`);
+  });
+};
+
+start().catch((err) => {
+  logger.error("API could not start", err);
+  process.exit(1);
 });
