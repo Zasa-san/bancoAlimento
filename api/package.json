@@ -4,6 +4,12 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "7.0.43",
+      "distro": "ubuntu-22.04"
+    }
+  },
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.build.json",
