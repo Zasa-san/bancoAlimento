@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const USER_ROLES = [
-  "coordinador",
-  "voluntario",
-  "donante",
-  "beneficiario",
+  "coordinator",
+  "volunteer",
+  "donor",
+  "beneficiary",
 ] as const;
 
 type UserRole = (typeof USER_ROLES)[number];

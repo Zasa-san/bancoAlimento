@@ -9,7 +9,7 @@ const connectDB = async (): Promise<void> => {
     logger.error("MongoDB connection error", err),
   );
   mongoose.connection.on("disconnected", () =>
-    logger.warn("MongoDB desconectado"),
+    logger.warn("MongoDB disconnected"),
   );
 
   await mongoose.connect(envData.MONGO_URI, { dbName: envData.DB_NAME });
