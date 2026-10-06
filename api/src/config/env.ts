@@ -12,6 +12,9 @@ const envSchema = z.object({
   JWT_SECRET: z.string().min(1),
   JWT_EXPIRES_IN: z.string().default("7d"),
   CORS_ORIGIN: z.string().default("http://localhost:5173"),
+  SEED_ADMIN_NAME: z.string().default("Coordinator"),
+  SEED_ADMIN_EMAIL: z.email().default("admin@banco.org"),
+  SEED_ADMIN_PASSWORD: z.string().min(8).default("admin1234"),
 });
 
 const parsed = envSchema.safeParse(process.env);

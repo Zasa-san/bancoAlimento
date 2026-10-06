@@ -43,14 +43,22 @@ docker compose down        # baja Mongo (conserva datos)
 docker compose down -v     # baja y borra el volumen de datos
 ```
 
-### 4. Correr la API
+### 4. Migraciones
+
+Aplica las migraciones de datos pendientes (la primera crea el coordinador inicial):
+
+```bash
+yarn migrate
+```
+
+### 5. Correr la API
 
 ```bash
 yarn dev
 # GET http://localhost:4000/health → { "status": "ok" }
 ```
 
-### 4. Logs
+### 6. Logs
 
 Los logs se guardan en `{apiFolder}/logs`. Los logs son rotativos de 14 días, o si superan los 20mb de tamaño.
 
@@ -60,6 +68,7 @@ Los logs se guardan en `{apiFolder}/logs`. Los logs son rotativos de 14 días, o
 | -------------------- | ------------------------------- |
 | `yarn dev`           | API en desarrollo (`tsx watch`) |
 | `yarn build`         | Compila a `dist/`               |
+| `yarn migrate`       | Aplica las migraciones de datos |
 | `yarn test`          | Tests con Vitest                |
 | `yarn test:watch`    | Tests con Vitest en modo watch  |
 | `yarn test:coverage` | Tests + coverage                |
