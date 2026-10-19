@@ -12,7 +12,11 @@ const connectDB = async (): Promise<void> => {
     logger.warn("MongoDB disconnected"),
   );
 
-  await mongoose.connect(envData.MONGO_URI, { dbName: envData.DB_NAME });
+  await mongoose.connect(envData.MONGO_URI, {
+    dbName: envData.DB_NAME,
+    connectTimeoutMS: envData.MONGO_TIMEOUT_MS,
+    serverSelectionTimeoutMS: envData.MONGO_TIMEOUT_MS,
+  });
 };
 
 const disconnectDB = async (): Promise<void> => {
