@@ -1,0 +1,23 @@
+info:
+  name: Logout
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{URL}}/auth/logout"
+  body:
+    type: json
+    data: |-
+      {
+        "email": {{ADMIN_EMAIL}},
+        "password": {{ADMIN_PASSWORD}}
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

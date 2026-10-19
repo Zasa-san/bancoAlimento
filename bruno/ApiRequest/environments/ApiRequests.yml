@@ -1,0 +1,11 @@
+name: ApiRequests
+variables:
+  - name: URL
+    value: http://localhost:4000
+    description: URL base
+  - name: ADMIN_EMAIL
+    value: '"admin@banco.org"'
+    description: Usuario admin base
+  - name: ADMIN_PASSWORD
+    value: '"admin1234"'
+    description: Password admin base
