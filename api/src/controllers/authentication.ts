@@ -1,25 +1,33 @@
 import type { RequestHandler } from "express";
 
-import { envData } from "../config/env.js";
-import type { LoginInput } from "../schemas/authentication.js";
-import { login } from "../services/authentication.js";
-import { toUserDto } from "../types/user.js";
-
-const COOKIE_NAME = "token";
-const COOKIE_MAX_AGE = 7 * 24 * 60 * 60 * 1000;
+import {
+  AUTH_COOKIE_MAX_AGE,
+  AUTH_COOKIE_NAME,
+  authCookieOptions,
+} from "../config/index.js";
+import type { LoginInput } from "../schemas/index.js";
+import { login } from "../services/index.js";
+import { toUserDto } from "../types/index.js";
 
 const loginController: RequestHandler = async (req, res) => {
   const { email, password } = req.body as LoginInput;
   const { user, token } = await login(email, password);
 
-  res.cookie(COOKIE_NAME, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: envData.NODE_ENV === "production",
-    maxAge: COOKIE_MAX_AGE,
+  res.cookie(AUTH_COOKIE_NAME, token, {
+    ...authCookieOptions,
+    maxAge: AUTH_COOKIE_MAX_AGE,
   });
 
   res.status(200).json({ user: toUserDto(user) });
 };
 
-export { loginController };
+const meController: RequestHandler = (req, res) => {
+  res.status(200).json({ user: req.user });
+};
+
+const logoutController: RequestHandler = (_req, res) => {
+  res.clearCookie(AUTH_COOKIE_NAME, authCookieOptions);
+  res.status(204).end();
+};
+
+export { loginController, logoutController, meController };

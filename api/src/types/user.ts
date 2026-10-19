@@ -1,4 +1,4 @@
-import type { UserRole } from "../models/User.js";
+import type { UserRole } from "../models/index.js";
 
 interface UserDto {
   id: string;
@@ -21,4 +21,5 @@ const toUserDto = (user: UserLike): UserDto => ({
   role: user.role,
 });
 
+export type { UserDto };
 export { toUserDto };

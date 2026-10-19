@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
+import request from "supertest";
 
+import { app } from "../../src/app.js";
 import { User, type UserRole } from "../../src/models/User.js";
 
 interface CreateUserInput {
@@ -22,4 +24,11 @@ const createUser = async ({
   return User.create({ name, email, passwordHash, role, active });
 };
 
-export { createUser };
+const loginAs = async (email: string, password: string): Promise<string> => {
+  const res = await request(app).post("/auth/login").send({ email, password });
+
+  const cookie = res.headers["set-cookie"]?.[0] ?? "";
+  return cookie.split(";")[0];
+};
+
+export { createUser, loginAs };

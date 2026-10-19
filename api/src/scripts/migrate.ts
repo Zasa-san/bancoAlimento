@@ -1,6 +1,5 @@
-import { connectDB, disconnectDB } from "../config/db.js";
-import { logger } from "../config/logger.js";
-import { runMigrations } from "../migrations/runner.js";
+import { connectDB, disconnectDB, logger } from "../config/index.js";
+import { runMigrations } from "../migrations/index.js";
 
 const run = async (): Promise<void> => {
   await connectDB();

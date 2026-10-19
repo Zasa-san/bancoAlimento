@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
-import { envData } from "../config/env.js";
-import { User } from "../models/User.js";
+import { envData } from "../config/index.js";
+import { User } from "../models/index.js";
 import type { Migration } from "./types.js";
 
 const up = async (): Promise<void> => {
