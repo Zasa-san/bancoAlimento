@@ -11,7 +11,6 @@ const app = express();
 
 app.use(express.static(dist));
 
-// SPA fallback: cualquier ruta desconocida devuelve index.html
 app.use((_req, res) => res.sendFile(path.join(dist, "index.html")));
 
 app.listen(port, () => {
