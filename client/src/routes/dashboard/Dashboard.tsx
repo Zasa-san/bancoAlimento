@@ -1,5 +1,15 @@
-import { Button, Card, Col, Flex, Layout, Row, Statistic, Typography } from "antd";
-import { useNavigate } from "react-router";
+import {
+  Button,
+  Card,
+  Col,
+  Flex,
+  Layout,
+  Row,
+  Statistic,
+  Typography,
+} from "antd";
+
+import { useAuth } from "../../providers";
 
 const { Title } = Typography;
 
@@ -10,7 +20,7 @@ const stats = [
 ];
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   return (
     <Layout>
@@ -27,7 +37,7 @@ const Dashboard = () => {
             </Col>
           ))}
         </Row>
-        <Button onClick={() => navigate("/")}>Cerrar sesión</Button>
+        <Button onClick={logout}>Cerrar sesión</Button>
       </Flex>
     </Layout>
   );
